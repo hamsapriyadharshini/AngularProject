@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row py-4">
+    <div class="col-md-6" style="color: red;" *ngFor="let data of requireFields?.requiredData">
+      <ul>
+        <li>{{data}} is Required</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button class="btn btn-primary" (click)="onNoClick()" id="ok-btn">OK</button>
+    </div>
+  </div>
+</div>

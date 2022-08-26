@@ -1,0 +1,106 @@
+<div class="customer-header">
+  <header class="clearfix bg-color">
+    <ng-container *ngIf="showHeader">
+      <div class="float-left">
+        <img src="./assets/img/logo.png" class="logo" />
+      </div>
+    <div class="float-right pr-2 pr-lg-4">
+      <ng-container *ngIf="!isLoggedIn">
+        <ul class="nav" *ngIf="mobileMenu">
+          <li class="nav-item" (click)="goToGuest()" id="goto-guest">
+            <a style="cursor: pointer;">
+              <span>{{ APPLABELCONSTANTS.GUEST.HOME }}</span>
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a routerLink="" style="pointer-events: none;cursor: default;">
+              {{ APPLABELCONSTANTS.GUEST.OUR_PRODUCTS }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" style="pointer-events: none;cursor: default;">
+              <img src="./assets/img/phone-icon.png" />
+              <span>{{ APPLABELCONSTANTS.GUEST_FOOTER.HELPLINE }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" style="pointer-events: none;cursor: default;">
+              <img src="./assets/img/mail.png" />
+              <span>{{ APPLABELCONSTANTS.GUEST_FOOTER.EMAIL }}</span>
+            </a>
+          </li>
+          <li class="nav-item no-border" (click)="goToLogin()" id="goto-login">
+            <a style="cursor: pointer;">{{ APPLABELCONSTANTS.GUEST.LOGIN }}</a>
+          </li>
+          <li class="nav-item no-border" (click)="goToGuestSignUp()" id="goto-signup">
+            <a style="cursor: pointer;">{{ APPLABELCONSTANTS.GUEST.SIGN_UP }}</a>
+          </li>
+          <li class="nav-item no-border">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </li> 
+        </ul>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <ul class="nav">
+          <li class="nav-item" (click)="goToHome()" id="goto-guesthome">
+            <a style="cursor: pointer;">
+              <span>{{ APPLABELCONSTANTS.GUEST.HOME }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" style="pointer-events: none;cursor: default;">
+              <img src="./assets/img/phone-icon.png" />
+              <span>{{ APPLABELCONSTANTS.GUEST_FOOTER.HELPLINE }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" style="pointer-events: none;cursor: default;">
+              <img src="./assets/img/mail.png" />
+              <span>{{ APPLABELCONSTANTS.GUEST_FOOTER.EMAIL }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <img src="assets/img/bell.png" />
+            </a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <img src="assets/img/calculator-one.png" />
+            </a>
+          </li> 
+          <li class="nav-item">
+            <div class="text-right pull-left login-info">
+              <p>Weclome {{ userInfo?.userName }}</p>
+            </div>
+            <div class="float-right profile-img">
+              <i class='fas fa-user-circle' style='font-size:45px;color:grey'></i>
+            </div>
+            <div class="float-right">
+              <span
+                class="fa fa-angle-down cursor-pointer"
+                [matMenuTriggerFor]="menu"
+              ></span>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="logOut()" id="logout">
+                  Logout
+                </button>
+              </mat-menu>
+            </div>
+          </li>
+          <li class="nav-item no-border" (click)="goToUserSignUp()" id="goto-usersignup">
+            <a style="cursor: pointer;">{{ APPLABELCONSTANTS.GUEST.SIGN_UP }}</a>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+    </ng-container>
+    <ng-container *ngIf="!showHeader">
+      <div class="float-left">
+        <img src="./assets/img/logo.png" class="logoWithoutHeader" />
+      </div>
+    </ng-container>
+  </header>
+</div>

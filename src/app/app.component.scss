@@ -1,0 +1,50 @@
+.insurance-house {
+    height: 100%;
+}
+.insurance-house-container {
+    background-color: #fff;
+    min-height: 100%;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    position: relative;
+    max-width: 100%;
+}
+.insurance-house-footer {
+    border-top: 1px solid #cccccc;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 26px;
+    line-height: 25px;
+    background-color: #fff;
+    color: #929292;
+    font-size: 11px;
+    font-weight: 400;
+}
+@media (max-width: 1366px) {
+    .insurance-house-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0;
+    }  
+    .insurance-house-footer {
+        left:0;
+        right:0;
+    } 
+}
+@media (max-width: 767px) {
+    .insurance-house-container {
+        padding-bottom: 45px;
+    }
+    .insurance-house-footer {
+        text-align: center !important;
+        font-size: 11px;
+        font-weight: 100;
+        padding-top: 7px;
+        z-index: 9999;
+        .footer-logo {
+            text-align: center !important;
+        }
+    }
+}

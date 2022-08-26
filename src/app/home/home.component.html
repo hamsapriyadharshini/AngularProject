@@ -1,0 +1,17 @@
+<div class="custom-home">
+  <div class="row">
+    <div class="col-12 page-nav nav">
+      <a
+        class="nav-link"
+        [ngClass]="{ active: nav.index == navIndex }"
+        *ngFor="let nav of navLinks"
+        (click)="onNavLink($event, nav)"
+        id="nav-link"
+        >{{ nav.label }}</a
+      >
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>
