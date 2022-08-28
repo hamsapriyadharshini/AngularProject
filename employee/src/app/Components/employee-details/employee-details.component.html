@@ -1,0 +1,22 @@
+<h2> Employee Details</h2>
+<div class="boxWrapper">
+  <div id="list">
+    <ul class="employees">
+      <li *ngFor="let employee of employees">
+        <button [class.selected]="employee === selectedEmployee" type="button" (click)="onSelect(employee)">
+          <span class="badge">{{employee.id}}</span>
+          <span class="name">{{employee.name}}</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="popup" *ngIf="selectedEmployee">
+    <h2>{{selectedEmployee.name | uppercase}} Details</h2>
+    <div>Employee Id: {{selectedEmployee.id}}</div>
+    <div>Employee Name: {{selectedEmployee.name}}</div>
+    <div>Employee Surname: {{selectedEmployee.surname}}</div>
+    <div>Employee Work Position: {{selectedEmployee.position}}</div>
+    <div>Employee DOB: {{selectedEmployee.dob}}</div>
+  </div>
+</div>

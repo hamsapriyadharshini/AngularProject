@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <form #f="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="code" name="name" ngModel placeholder="Name" required
+            #name="ngModel">
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="surname">Surname</label>
+          <input type="text" class="form-control" id="surname" name="surname" ngModel placeholder="Surname" required
+            #surname="ngModel">
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+          <div *ngIf="name.errors.required">
+            Surname is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="employeeType">Work Position</label>
+          <select class="form-control" name="employeeType" #employeeType="ngModel" ngModel required>
+            <option *ngFor="let empType of employeeTypes" id="employeeType" value={{empType}}>{{empType}}</option>
+          </select>
+        </div>
+        <div *ngIf="employeeType.invalid && (employeeType.dirty || employeeType.touched)" class="alert alert-danger">
+          <div *ngIf="employeeType.errors.required">
+            Work Position is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" class="form-control" id="dob" name="dob" ngModel placeholder="EmployeeDOB" #dob="ngModel"
+            required>
+        </div>
+        <div *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="alert alert-danger">
+          <div *ngIf="dob.errors.required">
+            DOB is required.
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Add New Employee</button>
+      </form>
+      <hr>
+      <div class="container" *ngIf="submitted">
+        <div class="search-hero">
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+            placeholder="&#61442;  Search">
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Surname</th>
+              <th scope="col">Work Position</th>
+              <th scope="col">DOB</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let user of formData | filter:searchText; index as i">
+              <tr>
+                <ng-container *ngIf="enableEditIndex != i">
+                  <td>{{user.name}}</td>
+                  <td>{{user.surname}}</td>
+                  <td>{{user.employeeType}}</td>
+                  <td>{{user.dob}}</td>
+                  <td *ngIf="enableEditIndex != i">
+                    <button type="button" type="button" class="btn btn-primary"
+                      (click)="switchEditMode(i)">Edit</button>
+                  </td>
+                  <td><button (click)='deleteEmployee(rowIndex)' type="button" class="btn btn-primary">Delete</button>
+                  </td>
+                </ng-container>
+                <ng-container *ngIf="enableEditIndex == i">
+                  <td><input [(ngModel)]="user.name" /></td>
+                  <td><input [(ngModel)]="user.surname" /></td>
+                  <td>
+                    <select [(ngModel)]="user.employeeType" (change)="changeEmployee($event.target.value)">
+                      <option *ngFor="let empType of employeeTypes" [value]="empType">{{empType}}</option>
+                    </select>
+                  </td>
+                  <td>{{user.dob}}</td>
+                  <td><button (click)="save()" type="button" class="btn btn-primary">Update</button></td>
+                </ng-container>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+  </div>
